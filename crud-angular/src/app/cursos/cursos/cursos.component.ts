@@ -8,7 +8,9 @@ import {Curso} from "../model/curso";
 })
 export class CursosComponent {
 
-  ListaCursos: Curso[] = [];
+  ListaCursos: Curso[] = [
+    {_id: '1', name: 'exemplo name 1', tag: 'exemplo tag 1'}
+  ];
   displayedColumns = ['name', 'tag'];
 
 }
