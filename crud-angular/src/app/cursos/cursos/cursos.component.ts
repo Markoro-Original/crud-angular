@@ -9,6 +9,6 @@ import {Curso} from "../model/curso";
 export class CursosComponent {
 
   ListaCursos: Curso[] = [];
-  displayedColumns = ['name', 'tags'];
+  displayedColumns = ['name', 'tag'];
 
 }
