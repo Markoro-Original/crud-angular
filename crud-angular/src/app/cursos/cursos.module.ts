@@ -3,15 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { CursosRoutingModule } from './cursos-routing.module';
 import { CursosComponent } from './cursos/cursos.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
   declarations: [
     CursosComponent
   ],
+  exports: [
+    CursosComponent
+  ],
   imports: [
     CommonModule,
-    CursosRoutingModule
+    CursosRoutingModule,
+    MatTableModule
   ]
 })
 export class CursosModule { }
