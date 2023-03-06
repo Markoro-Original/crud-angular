@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Curso} from "../model/curso";
+import {CursosService} from "../services/cursos.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-cursos',
@@ -8,9 +10,14 @@ import {Curso} from "../model/curso";
 })
 export class CursosComponent {
 
-  ListaCursos: Curso[] = [
-    {_id: '1', name: 'exemplo name 1', tag: 'exemplo tag 1'}
-  ];
+  listaCursos: Observable<Curso[]>;
   displayedColumns = ['name', 'tag'];
 
+  //cursosService: CursosService;
+
+  constructor(private cursosService: CursosService) {
+
+    //this.cursosService = new CursosService(HttpClient);
+    this.listaCursos = this.cursosService.list();
+  }
 }
