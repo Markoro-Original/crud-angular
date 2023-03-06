@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 export class CursosComponent {
 
   listaCursos$: Observable<Curso[]>;
+  loading$: Observable<boolean>;
   displayedColumns = ['name', 'tag'];
 
   //cursosService: CursosService;
@@ -19,5 +20,6 @@ export class CursosComponent {
 
     //this.cursosService = new CursosService(HttpClient);
     this.listaCursos$ = this.cursosService.list();
+    this.loading$ = this.cursosService.loadingSubject;
   }
 }
