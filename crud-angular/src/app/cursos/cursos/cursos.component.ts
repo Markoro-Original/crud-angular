@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class CursosComponent {
 
-  listaCursos: Observable<Curso[]>;
+  listaCursos$: Observable<Curso[]>;
   displayedColumns = ['name', 'tag'];
 
   //cursosService: CursosService;
@@ -18,6 +18,6 @@ export class CursosComponent {
   constructor(private cursosService: CursosService) {
 
     //this.cursosService = new CursosService(HttpClient);
-    this.listaCursos = this.cursosService.list();
+    this.listaCursos$ = this.cursosService.list();
   }
 }
