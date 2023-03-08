@@ -23,7 +23,7 @@ export class CursosComponent {
     //this.cursosService = new CursosService(HttpClient);
     this.listaCursos$ = this.cursosService.list().pipe(
       catchError(error => {
-        this.onError('Erro ao carregar cursos.');
+        this.onError('Erro ao carregar os cursos!!!');
         return of([])
       })
     );
