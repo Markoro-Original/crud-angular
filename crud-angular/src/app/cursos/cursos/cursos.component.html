@@ -8,7 +8,9 @@
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Nome </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon aria-hidden="false" aria-label="Tag do curso">{{ element.tag | tag }}</mat-icon>
+      {{element.name}}</td>
   </ng-container>
 
   <ng-container matColumnDef="tag">
