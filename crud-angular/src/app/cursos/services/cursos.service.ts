@@ -20,8 +20,8 @@ export class CursosService {
       //first(),
       take(1),
       delay(5000),
-      finalize(() => this.loadingSubject.next(false)),
-      tap(listaCursos => console.log(listaCursos))
+      tap(listaCursos => console.log(listaCursos)),
+      finalize(() => this.loadingSubject.next(false))
     );
   }
 }

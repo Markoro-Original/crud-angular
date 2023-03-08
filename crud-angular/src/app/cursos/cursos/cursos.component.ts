@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Curso} from "../model/curso";
 import {CursosService} from "../services/cursos.service";
-import {Observable} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-cursos',
@@ -19,7 +19,12 @@ export class CursosComponent {
   constructor(private cursosService: CursosService) {
 
     //this.cursosService = new CursosService(HttpClient);
-    this.listaCursos$ = this.cursosService.list();
+    this.listaCursos$ = this.cursosService.list().pipe(
+      catchError(error => {
+        console.log(error);
+        return of([])
+      })
+    );
     this.loading$ = this.cursosService.loadingSubject;
   }
 }
