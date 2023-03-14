@@ -16,7 +16,7 @@ export class CursosService {
   list() {
     this.loadingSubject.next(true);
 
-    return this.httpClient.get<Curso[]>('/assets/cursos.json').pipe(
+    return this.httpClient.get<Curso[]>('api/cursos').pipe(
       //first(),
       take(1),
       delay(5000),
