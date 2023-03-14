@@ -1,6 +1,7 @@
 package com.example.crudspring.model;
 
 import com.fasterxml.classmate.GenericType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Cursos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("_id")
     private Long id;
     @Column(length = 100, nullable = false)
     private String name;
