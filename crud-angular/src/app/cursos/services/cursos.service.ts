@@ -24,4 +24,9 @@ export class CursosService {
       finalize(() => this.loadingSubject.next(false))
     );
   }
+
+  save(record: Curso) {
+    return this.httpClient.post<Curso>('api/cursos', record);
+  }
+
 }
