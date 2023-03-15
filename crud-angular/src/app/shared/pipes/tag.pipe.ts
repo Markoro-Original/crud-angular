@@ -7,8 +7,8 @@ export class TagPipe implements PipeTransform {
 
   transform(value: string): string {
     switch (value){
-      case 'tag 1': return 'code';
-      case 'tag 2': return 'computer';
+      case 'Tag 1': return 'code';
+      case 'Tag 2': return 'computer';
     }
     return 'code';
   }

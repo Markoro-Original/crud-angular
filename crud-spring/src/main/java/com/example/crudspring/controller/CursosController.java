@@ -4,11 +4,9 @@ import com.example.crudspring.model.Cursos;
 import com.example.crudspring.repository.CursosRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +20,16 @@ public class CursosController {
     //@RequestMapping(method = RequestMethod.GET) <- outra forma de usar o método get
     @GetMapping
     public @ResponseBody List<Cursos> list() {
+
         return cursosRepository.findAll();
+
+    }
+
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void create(@RequestBody Cursos curso){
+        cursosRepository.save(curso);
+        //return ResponseEntity.status(HttpStatus.CREATED).body(cursosRepository.save(curso));
     }
 
 }

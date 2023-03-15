@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router: Router) {
   }
 
-  onClick(){
+  onReturnHome(){
     this.router.navigate([''])
   }
 
