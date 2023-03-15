@@ -1,1 +1,24 @@
-<p>curso-form works!</p>
+<mat-card>
+
+  <mat-toolbar color = "primary"  class="toolbar-card">Novo Curso</mat-toolbar>
+
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill" class="form-campos">
+        <mat-label>Nome do Curso</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-campos">
+        <mat-label>Tags do Curso</mat-label>
+        <input matInput formControlName="tag">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="form-button" mat-raised-button color="primary" (click)="onSubmit()">Confirmar</button>
+    <button class="form-button" mat-raised-button (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+
+</mat-card>

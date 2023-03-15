@@ -19,3 +19,13 @@ $my-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card{
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.toolbar-card{
+  border-radius: 5px 5px 0px 0px;
+}
