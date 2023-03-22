@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
@@ -16,14 +16,17 @@ export class CursoFormComponent {
   constructor(private formBuilder: FormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router) {
 
     this.form = this.formBuilder.group({
-      name: [null],
-      tag: [null]
+      name: ['', Validators.required],
+      tags: ['']
     });
 
   }
 
   onSubmit(){
-    this.service.save(this.form.value).subscribe(result => this.onSuccess(), error => this.onError());
+    // @ts-ignore
+    const tags = this.form.get('tags').value.split(',');
+    const curso = { ...this.form.value, tags};
+    this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
     this.router.navigate(['']);
   }
 

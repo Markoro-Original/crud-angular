@@ -15,7 +15,7 @@ export class CursosComponent {
 
   listaCursos$: Observable<Curso[]>;
   loading$: Observable<boolean>;
-  displayedColumns = ['name', 'tag', 'actions'];
+  displayedColumns = ['name', 'tags', 'actions'];
 
   //cursosService: CursosService;
 

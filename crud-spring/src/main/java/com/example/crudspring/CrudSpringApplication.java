@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class CrudSpringApplication {
 
@@ -18,11 +20,11 @@ public class CrudSpringApplication {
 	@Bean
 	CommandLineRunner initDatabase(CursosRepository cursosRepository){
 		return args -> {
-			cursosRepository.deleteAll();
+			//cursosRepository.deleteAll();
 
 			Cursos c = new Cursos();
-			c.setName("Curso 3");
-			c.setTag("Tag 3");
+			c.setName("Curso1");
+			c.setTags(Arrays.asList(new String[]{"Tag 2", " Tag 3"}));
 
 			cursosRepository.save(c);
 		};

@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.lang.reflect.GenericArrayType;
+import java.util.List;
 
 //@Getter <- gera getters
 //@Setter <- gera setters
@@ -21,7 +22,7 @@ public class Cursos {
     private Long id;
     @Column(length = 100, nullable = false)
     private String name;
-    @Column(length = 20)
-    private String tag;
+    @ElementCollection
+    private List<String> tags;
 
 }

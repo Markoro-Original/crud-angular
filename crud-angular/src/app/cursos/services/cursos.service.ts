@@ -25,8 +25,8 @@ export class CursosService {
     );
   }
 
-  save(record: Curso) {
-    return this.httpClient.post<Curso>('api/cursos', record);
+  save(curso: Curso) {
+    return this.httpClient.post<Curso>('api/cursos', curso);
   }
 
 }
