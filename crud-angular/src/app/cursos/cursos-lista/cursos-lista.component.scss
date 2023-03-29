@@ -1,28 +1,10 @@
 .novo-curso{
   height: 56px;
-}
-
-.mat-column-name{
-  width: 864.8px !important;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.mat-column-tags{
-  width: 859.26px;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.mat-column-actions{
-  width: 100px;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: 0 0 200px;
 }
 
 .celula-edit-delete{
   height: 52px;
+  flex: 0 0 200px;
 }
+
