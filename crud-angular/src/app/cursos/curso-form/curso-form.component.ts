@@ -24,7 +24,7 @@ export class CursoFormComponent {
 
   onSubmit(){
     // @ts-ignore
-    const tags = this.form.get('tags').value.split(',');
+    const tags = this.form.get('tags').value.split(',').map(tag => tag.trim()); //parece que mesmo sem o map(trim()), os espaços a mais são ignorados
     const curso = { ...this.form.value, tags};
     this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
     this.router.navigate(['']);
