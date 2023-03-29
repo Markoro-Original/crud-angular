@@ -11,19 +11,12 @@ import {Router} from "@angular/router";
 })
 export class CursoFormComponent {
 
-  //form: FormGroup;
   form = this.formBuilder.group({
     name: [''],
     tags: ['']
   });
 
   constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router) {
-
-    /*this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      tags: ['']
-    });
-    */
 
   }
 
