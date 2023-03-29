@@ -25,7 +25,7 @@ export class CursosService {
     );
   }
 
-  save(curso: Curso) {
+  save(curso: Partial<Curso>) {
     return this.httpClient.post<Curso>('api/cursos', curso);
   }
 

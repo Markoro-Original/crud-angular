@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
@@ -11,14 +11,19 @@ import {Router} from "@angular/router";
 })
 export class CursoFormComponent {
 
-  form: FormGroup;
+  //form: FormGroup;
+  form = this.formBuilder.group({
+    name: [''],
+    tags: ['']
+  });
 
-  constructor(private formBuilder: FormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router) {
 
-    this.form = this.formBuilder.group({
+    /*this.form = this.formBuilder.group({
       name: ['', Validators.required],
       tags: ['']
     });
+    */
 
   }
 
@@ -26,6 +31,7 @@ export class CursoFormComponent {
     // @ts-ignore
     const tags = this.form.get('tags').value.split(',').map(tag => tag.trim()); //parece que mesmo sem o map(trim()), os espaços a mais são ignorados
     const curso = { ...this.form.value, tags};
+    // Se não usar o NonNullable e algum atributo tiver chance de ser null, o save(curso) não funciona, mesmo com o Partil<Curso> na assinatura
     this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
     this.router.navigate(['']);
   }
