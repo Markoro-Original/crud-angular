@@ -3,6 +3,7 @@ import {NonNullableFormBuilder} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-curso-form',
@@ -39,6 +40,27 @@ export class CursoFormComponent {
 
   private onError(){
     this.snackBar.open('Erro ao salvar curso','', {duration: 3000});
+  }
+
+  tags: string[] = [];
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  addTag(event: any): void {
+    const value = (event.value || '').trim();
+
+    if(value){
+      this.tags.push(value);
+    }
+
+    event.chipInput.clear();
+  }
+
+  removeTag(tag: string): void{
+    const index = this.tags.indexOf(tag);
+
+    if(index >= 0){
+      this.tags.splice(index, 1);
+    }
   }
 
 }
