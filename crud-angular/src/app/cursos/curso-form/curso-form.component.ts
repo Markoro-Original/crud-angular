@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NonNullableFormBuilder} from "@angular/forms";
+import {FormControl, NonNullableFormBuilder} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
@@ -16,14 +16,40 @@ export class CursoFormComponent {
     name: [''],
     tags: ['']
   });
+  tagCtrl = new FormControl();
+  tags: any[] = [];
+  separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router) {
 
   }
 
+  addTag(event: any){
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.tags.push({ name: value.trim() });
+    }
+
+    if (input) {
+      input.value = '';
+    }
+
+    this.tagCtrl.setValue(null);
+  }
+
+  removeTag(tag: string): void{
+    const index = this.tags.indexOf(tag);
+
+    if(index >= 0){
+      this.tags.splice(index, 1);
+    }
+  }
+
   onSubmit(){
     // @ts-ignore
-    const tags = this.form.get('tags').value.split(',').map(tag => tag.trim()); //parece que mesmo sem o map(trim()), os espaços a mais são ignorados
+    const tags = this.tags.map(tag => tag.name.trim()); //parece que mesmo sem o map(trim()), os espaços a mais são ignorados
     const curso = { ...this.form.value, tags};
     // Se não usar o NonNullable e algum atributo tiver chance de ser null, o save(curso) não funciona, mesmo com o Partil<Curso> na assinatura
     this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
@@ -42,25 +68,5 @@ export class CursoFormComponent {
     this.snackBar.open('Erro ao salvar curso','', {duration: 3000});
   }
 
-  tags: string[] = [];
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-
-  addTag(event: any): void {
-    const value = (event.value || '').trim();
-
-    if(value){
-      this.tags.push(value);
-    }
-
-    event.chipInput.clear();
-  }
-
-  removeTag(tag: string): void{
-    const index = this.tags.indexOf(tag);
-
-    if(index >= 0){
-      this.tags.splice(index, 1);
-    }
-  }
 
 }

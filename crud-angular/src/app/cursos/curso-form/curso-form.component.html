@@ -10,12 +10,14 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form-campos">
+        <mat-label>Tags do Curso</mat-label>
         <mat-chip-grid #chipgrid>
-          <mat-chip *ngFor="let tag of tags" (removed)="removeTag(tag)">
-            {{tag}}
+          <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
+            {{tag.name}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
           <input
+            [formControl]="tagCtrl"
             [matChipInputFor]="chipgrid"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="true"
