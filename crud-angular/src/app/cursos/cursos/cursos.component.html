@@ -7,6 +7,7 @@
   <app-cursos-lista
     *ngIf="listaCursos$ | async as listaCursos"
     [listaCursos]="listaCursos"
+    (add) = "onAdd()"
   ></app-cursos-lista>
 
   <div class="loading-spinner" *ngIf="loading$ | async">

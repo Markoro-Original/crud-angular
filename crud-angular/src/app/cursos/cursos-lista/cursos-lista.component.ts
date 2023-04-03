@@ -1,6 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Curso} from "../model/curso";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cursos-lista',
@@ -10,13 +9,14 @@ import {Router} from "@angular/router";
 export class CursosListaComponent {
 
   @Input() listaCursos: Curso[] = [];
+  @Output() add = new EventEmitter(false);
   displayedColumns = ['name', 'tags', 'actions'];
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   onAdd(){
-    this.router.navigate(['new'])
+    this.add.emit(true);
   }
 
 }

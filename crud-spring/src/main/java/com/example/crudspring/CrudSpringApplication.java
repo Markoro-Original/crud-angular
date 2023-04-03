@@ -23,7 +23,7 @@ public class CrudSpringApplication {
 			//cursosRepository.deleteAll();
 
 			Cursos c = new Cursos();
-			c.setName("Curso1");
+			c.setName("Curso 1");
 			c.setTags(Arrays.asList(new String[]{"Tag 2", " Tag 3"}));
 
 			cursosRepository.save(c);
