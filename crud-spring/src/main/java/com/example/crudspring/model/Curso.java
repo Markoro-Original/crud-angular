@@ -1,11 +1,9 @@
 package com.example.crudspring.model;
 
-import com.fasterxml.classmate.GenericType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.lang.reflect.GenericArrayType;
 import java.util.List;
 
 //@Getter <- gera getters
@@ -14,7 +12,7 @@ import java.util.List;
 @Data
 @Entity
 //@Table(name = "aulas") <- usar para dar um nome específico à tabela criada no banco de dados
-public class Cursos {
+public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

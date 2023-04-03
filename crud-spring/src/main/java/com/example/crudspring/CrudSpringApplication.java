@@ -1,6 +1,6 @@
 package com.example.crudspring;
 
-import com.example.crudspring.model.Cursos;
+import com.example.crudspring.model.Curso;
 import com.example.crudspring.repository.CursosRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +22,7 @@ public class CrudSpringApplication {
 		return args -> {
 			//cursosRepository.deleteAll();
 
-			Cursos c = new Cursos();
+			Curso c = new Curso();
 			c.setName("Curso 1");
 			c.setTags(Arrays.asList(new String[]{"Tag 2", " Tag 3"}));
 
