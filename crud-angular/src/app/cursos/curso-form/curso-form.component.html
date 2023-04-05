@@ -6,14 +6,14 @@
     <form [formGroup]="form" class="formulario">
       <mat-form-field appearance="fill" class="form-campos">
         <mat-label>Nome do Curso</mat-label>
-        <input matInput formControlName="name">
+        <input matInput formControlName="name"/>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form-campos">
         <mat-label>Tags do Curso</mat-label>
         <mat-chip-grid #chipgrid>
-          <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
-            {{tag.name}}
+          <mat-chip *ngFor="let tag of form.value.tags" [removable]="true" (removed)="removeTag(tag)">
+            {{tag}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
           <input
