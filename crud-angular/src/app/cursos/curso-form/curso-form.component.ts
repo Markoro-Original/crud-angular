@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import {FormControl, NonNullableFormBuilder} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {Curso} from "../model/curso";
 
 @Component({
   selector: 'app-curso-form',
@@ -14,14 +15,18 @@ export class CursoFormComponent {
 
   form = this.formBuilder.group({
     name: [''],
-    tags: ['']
+    tags: [['']]
   });
   tagCtrl = new FormControl();
   tags: any[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router) {
-
+  constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute) {
+    const curso: Curso = this.route.snapshot.data['curso'];
+    this.form.setValue({
+      name: curso.name,
+      tags: curso.tags
+    })
   }
 
   addTag(event: any){
@@ -48,8 +53,7 @@ export class CursoFormComponent {
   }
 
   onSubmit(){
-    // @ts-ignore
-    const tags = this.tags.map(tag => tag.name.trim()); //parece que mesmo sem o map(trim()), os espaços a mais são ignorados
+    const tags = this.tags.map(tag => tag.name.trim()); //parece que mesmo sem o trim(), os espaços a mais são ignorados
     const curso = { ...this.form.value, tags};
     // Se não usar o NonNullable e algum atributo tiver chance de ser null, o save(curso) não funciona, mesmo com o Partil<Curso> na assinatura
     this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
