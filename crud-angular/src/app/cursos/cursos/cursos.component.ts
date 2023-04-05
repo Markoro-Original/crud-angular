@@ -41,4 +41,8 @@ export class CursosComponent {
     this.router.navigate(['new'])
   }
 
+  onEdit(curso: Curso){
+    this.router.navigate(['edit', curso._id])
+  }
+
 }

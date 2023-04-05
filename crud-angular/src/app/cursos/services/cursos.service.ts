@@ -19,10 +19,14 @@ export class CursosService {
     return this.httpClient.get<Curso[]>('api/cursos').pipe(
       //first(),
       take(1),
-      delay(5000),
+      //delay(5000),
       tap(listaCursos => console.log(listaCursos)),
       finalize(() => this.loadingSubject.next(false))
     );
+  }
+
+  loadById(id: string){
+    return this.httpClient.get<Curso>(`api/cursos/${id}`);
   }
 
   save(curso: Partial<Curso>) {

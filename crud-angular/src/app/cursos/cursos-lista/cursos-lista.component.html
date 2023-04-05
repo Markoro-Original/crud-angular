@@ -20,7 +20,7 @@
     </mat-header-cell>
 
     <mat-cell *matCellDef="let element" class="celula-edit-delete">
-      <button mat-icon-button color="primary" aria-label="Editar Curso">
+      <button mat-icon-button color="primary" aria-label="Editar Curso" (click)="onEdit(element)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button aria-label="Deletar Curso">

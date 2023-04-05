@@ -10,6 +10,7 @@ export class CursosListaComponent {
 
   @Input() listaCursos: Curso[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
   displayedColumns = ['name', 'tags', 'actions'];
 
   constructor() {
@@ -17,6 +18,10 @@ export class CursosListaComponent {
 
   onAdd(){
     this.add.emit(true);
+  }
+
+  onEdit(curso: Curso){
+    this.edit.emit(curso);
   }
 
 }

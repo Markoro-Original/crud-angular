@@ -24,7 +24,7 @@ public class CrudSpringApplication {
 
 			Curso c = new Curso();
 			c.setName("Curso 1");
-			c.setTags(Arrays.asList(new String[]{"Tag 2", " Tag 3"}));
+			c.setTags(Arrays.asList(new String[]{"Tag 2", "Tag 3"}));
 
 			cursosRepository.save(c);
 		};
