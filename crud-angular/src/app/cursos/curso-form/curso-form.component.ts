@@ -18,7 +18,6 @@ export class CursoFormComponent {
     tags: [['']]
   });
   tagCtrl = new FormControl();
-  tags: any[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute) {
@@ -34,7 +33,7 @@ export class CursoFormComponent {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.tags.push({ name: value.trim() });
+      this.form.value.tags?.push(value.trim());
     }
 
     if (input) {
@@ -45,15 +44,15 @@ export class CursoFormComponent {
   }
 
   removeTag(tag: string): void{
-    const index = this.tags.indexOf(tag);
+    const index = this.form.value.tags?.indexOf(tag);
 
-    if(index >= 0){
-      this.tags.splice(index, 1);
+    if(index != null && index >= 0){
+      this.form.value.tags?.splice(index, 1);
     }
   }
 
   onSubmit(){
-    const tags = this.tags.map(tag => tag.name.trim()); //parece que mesmo sem o trim(), os espaços a mais são ignorados
+    const tags = this.form.value.tags?.map(tag => tag.trim()); //parece que mesmo sem o trim(), os espaços a mais são ignorados
     const curso = { ...this.form.value, tags};
     // Se não usar o NonNullable e algum atributo tiver chance de ser null, o save(curso) não funciona, mesmo com o Partil<Curso> na assinatura
     this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
