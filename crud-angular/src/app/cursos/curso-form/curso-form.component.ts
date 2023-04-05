@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormControl, NonNullableFormBuilder} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {Curso} from "../model/curso";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-curso-form',
@@ -24,8 +25,9 @@ export class CursoFormComponent {
     const curso: Curso = this.route.snapshot.data['curso'];
     this.form.setValue({
       name: curso.name,
-      tags: curso.tags
+      tags: curso.tags,
     })
+    this.tagCtrl.setValue(' ')
   }
 
   addTag(event: any){
