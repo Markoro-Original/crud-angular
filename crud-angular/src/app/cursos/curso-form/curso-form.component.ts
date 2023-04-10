@@ -1,18 +1,17 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, NonNullableFormBuilder} from "@angular/forms";
 import {CursosService} from "../services/cursos.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {Curso} from "../model/curso";
-import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-curso-form',
   templateUrl: './curso-form.component.html',
   styleUrls: ['./curso-form.component.scss']
 })
-export class CursoFormComponent {
+export class CursoFormComponent implements OnInit{
 
   form = this.formBuilder.group({
     name: [''],
@@ -22,6 +21,10 @@ export class CursoFormComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute) {
+
+  }
+
+  ngOnInit(): void{
     const curso: Curso = this.route.snapshot.data['curso'];
     this.tagCtrl.setValue(' ')
     this.form.setValue({

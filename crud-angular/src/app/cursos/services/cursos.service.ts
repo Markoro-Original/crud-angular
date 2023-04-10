@@ -20,7 +20,7 @@ export class CursosService {
       //first(),
       take(1),
       //delay(5000),
-      tap(listaCursos => console.log(listaCursos)),
+      //tap(listaCursos => console.log(listaCursos)),
       finalize(() => this.loadingSubject.next(false))
     );
   }
@@ -30,7 +30,19 @@ export class CursosService {
   }
 
   save(curso: Partial<Curso>) {
+    if(curso._id){
+      return this.update(curso);
+    }else{
+      return this.create(curso);
+    }
+  }
+
+  private create(curso: Partial<Curso>) {
     return this.httpClient.post<Curso>('api/cursos', curso);
+  }
+
+  private update(curso: Partial<Curso>) {
+    return this.httpClient.put<Curso>(`api/cursos/${curso._id}`, curso);
   }
 
 }
