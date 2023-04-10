@@ -14,6 +14,7 @@ import {Curso} from "../model/curso";
 export class CursoFormComponent implements OnInit{
 
   form = this.formBuilder.group({
+    _id: [''],
     name: [''],
     tags: [['']]
   });
@@ -28,6 +29,7 @@ export class CursoFormComponent implements OnInit{
     const curso: Curso = this.route.snapshot.data['curso'];
     this.tagCtrl.setValue(' ')
     this.form.setValue({
+      _id: curso._id,
       name: curso.name,
       tags: curso.tags
     })
