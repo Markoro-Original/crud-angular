@@ -23,11 +23,11 @@ export class CursoFormComponent {
 
   constructor(private formBuilder: NonNullableFormBuilder, private service: CursosService, private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute) {
     const curso: Curso = this.route.snapshot.data['curso'];
+    this.tagCtrl.setValue(' ')
     this.form.setValue({
       name: curso.name,
-      tags: curso.tags,
+      tags: curso.tags
     })
-    this.tagCtrl.setValue(' ')
   }
 
   addTag(event: any){
