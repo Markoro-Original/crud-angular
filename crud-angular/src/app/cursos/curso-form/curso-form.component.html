@@ -4,13 +4,13 @@
 
   <mat-card-content>
     <form [formGroup]="form" class="formulario">
-      <h2>Nome do Curso</h2>
       <mat-form-field appearance="fill" class="form-campos">
-        <input matInput formControlName="name">
+        <mat-label>Nome do Curso</mat-label>
+        <input matInput formControlName="name"/>
       </mat-form-field>
 
-      <h2>Tags do Curso</h2>
       <mat-form-field appearance="fill" class="form-campos">
+        <mat-label>Tags do Curso</mat-label>
         <mat-chip-grid #chipgrid>
           <mat-chip *ngFor="let tag of form.value.tags" [removable]="true" (removed)="removeTag(tag)">
             {{tag}}
