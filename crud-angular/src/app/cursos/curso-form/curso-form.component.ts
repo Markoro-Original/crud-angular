@@ -35,7 +35,7 @@ export class CursoFormComponent {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.form.value.tags?.push(value.trim() );
+      this.form.value.tags?.push(value.trim());
     }
 
     if (input) {
