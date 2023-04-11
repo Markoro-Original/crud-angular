@@ -50,4 +50,9 @@ public class CursosController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") Long id){
+        cursosRepository.deleteById(id);
+    }
+
 }

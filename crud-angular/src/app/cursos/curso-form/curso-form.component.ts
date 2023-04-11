@@ -26,16 +26,23 @@ export class CursoFormComponent implements OnInit{
   }
 
   ngOnInit(): void{
+
     const curso: Curso = this.route.snapshot.data['curso'];
-    this.tagCtrl.setValue(' ')
+
+    if(curso.tags.length != 0){
+      this.tagCtrl.setValue(' ')
+    }
+
     this.form.setValue({
       _id: curso._id,
       name: curso.name,
       tags: curso.tags
     })
+
   }
 
   addTag(event: any){
+
     const input = event.input;
     const value = event.value;
 
@@ -48,22 +55,28 @@ export class CursoFormComponent implements OnInit{
     }
 
     this.tagCtrl.setValue(null);
+
   }
 
   removeTag(tag: string): void{
+
     const index = this.form.value.tags?.indexOf(tag);
 
     if(index != null && index >= 0){
       this.form.value.tags?.splice(index, 1);
     }
+
   }
 
   onSubmit(){
+
     const tags = this.form.value.tags?.map(tag => tag.trim()); //parece que mesmo sem o trim(), os espaços a mais são ignorados
     const curso = { ...this.form.value, tags};
+
     // Se não usar o NonNullable e algum atributo tiver chance de ser null, o save(curso) não funciona, mesmo com o Partil<Curso> na assinatura
     this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
     this.router.navigate(['']);
+
   }
 
   onCancel(){
