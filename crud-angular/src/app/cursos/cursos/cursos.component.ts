@@ -51,15 +51,11 @@ export class CursosComponent {
       this.refresh()
       this.deleteSuccess(curso)
     },
-      () => this.deleteError());
+      () => this.onError('Não foi possível deletar o curso!!!'));
   }
 
   private deleteSuccess(curso: Curso){
     this.snackBar.open(`O curso "${curso.name}" foi deletado`,'', {duration: 3000});
-  }
-
-  private deleteError(){
-    this.snackBar.open('Houve um erro ao deletar o curso','', {duration: 3000});
   }
 
   private refresh(){
