@@ -27,8 +27,15 @@ export class CursosListaComponent {
   }
 
   onDelete(curso: Curso){
-    this.service.delete(curso).subscribe();
-    this.snackBar.open('Curso deletado','', {duration: 3000});
+    this.service.delete(curso).subscribe(result => this.deleteSuccess(curso), error => this.deleteError());
+  }
+
+  deleteSuccess(curso: Curso){
+    this.snackBar.open(`O curso "${curso.name}" foi deletado`,'', {duration: 3000});
+  }
+
+  private deleteError(){
+    this.snackBar.open('Houve um erro ao deletar o curso','', {duration: 3000});
   }
 
 }
