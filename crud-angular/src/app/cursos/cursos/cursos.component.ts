@@ -47,7 +47,11 @@ export class CursosComponent {
   }
 
   onDelete(curso: Curso){
-    this.cursosService.delete(curso).subscribe(() => this.deleteSuccess(curso), () => this.deleteError());
+    this.cursosService.delete(curso).subscribe(() => {
+      this.refresh()
+      this.deleteSuccess(curso)
+    },
+      () => this.deleteError());
   }
 
   private deleteSuccess(curso: Curso){
@@ -56,6 +60,16 @@ export class CursosComponent {
 
   private deleteError(){
     this.snackBar.open('Houve um erro ao deletar o curso','', {duration: 3000});
+  }
+
+  private refresh(){
+    this.listaCursos$ = this.cursosService.list().pipe(
+      catchError(() => {
+        this.onError('Erro ao carregar os cursos!!!');
+        return of([])
+      })
+    );
+    this.loading$ = this.cursosService.loadingSubject;
   }
 
 }
