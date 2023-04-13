@@ -9,6 +9,7 @@
     [listaCursos]="listaCursos"
     (add) ="onAdd()"
     (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
   ></app-cursos-lista>
 
   <div class="loading-spinner" *ngIf="loading$ | async">

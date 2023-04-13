@@ -5,6 +5,7 @@ import {catchError, Observable, of} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorDialogComponent} from "../../shared/components/error-dialog/error-dialog.component";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-cursos',
@@ -19,7 +20,7 @@ export class CursosComponent {
 
   //cursosService: CursosService;
 
-  constructor(private cursosService: CursosService, public dialog: MatDialog, private router: Router) {
+  constructor(private cursosService: CursosService, public dialog: MatDialog, private router: Router, private snackBar: MatSnackBar) {
 
     //this.cursosService = new CursosService(HttpClient);
     this.listaCursos$ = this.cursosService.list().pipe(
@@ -43,6 +44,18 @@ export class CursosComponent {
 
   onEdit(curso: Curso){
     this.router.navigate(['edit', curso._id])
+  }
+
+  onDelete(curso: Curso){
+    this.cursosService.delete(curso).subscribe(result => this.deleteSuccess(curso), error => this.deleteError());
+  }
+
+  private deleteSuccess(curso: Curso){
+    this.snackBar.open(`O curso "${curso.name}" foi deletado`,'', {duration: 3000});
+  }
+
+  private deleteError(){
+    this.snackBar.open('Houve um erro ao deletar o curso','', {duration: 3000});
   }
 
 }
