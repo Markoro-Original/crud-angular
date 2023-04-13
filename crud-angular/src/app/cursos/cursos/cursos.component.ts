@@ -24,7 +24,7 @@ export class CursosComponent {
 
     //this.cursosService = new CursosService(HttpClient);
     this.listaCursos$ = this.cursosService.list().pipe(
-      catchError(error => {
+      catchError(() => {
         this.onError('Erro ao carregar os cursos!!!');
         return of([])
       })
@@ -47,7 +47,7 @@ export class CursosComponent {
   }
 
   onDelete(curso: Curso){
-    this.cursosService.delete(curso).subscribe(result => this.deleteSuccess(curso), error => this.deleteError());
+    this.cursosService.delete(curso).subscribe(() => this.deleteSuccess(curso), () => this.deleteError());
   }
 
   private deleteSuccess(curso: Curso){

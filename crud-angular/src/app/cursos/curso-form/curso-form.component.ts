@@ -74,7 +74,7 @@ export class CursoFormComponent implements OnInit{
     const curso = { ...this.form.value, tags};
 
     // Se não usar o NonNullable e algum atributo tiver chance de ser null, o save(curso) não funciona, mesmo com o Partil<Curso> na assinatura
-    this.service.save(curso).subscribe(result => this.onSuccess(), error => this.onError());
+    this.service.save(curso).subscribe(() => this.onSuccess(), () => this.onError());
     this.router.navigate(['']);
 
   }
